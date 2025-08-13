@@ -1,0 +1,36 @@
+{
+	"lab_vms": [
+		{
+			"vm_name": "server1",
+			"source_vm": "Golden",
+			"source_dir": "/vm/RHEL-9-4/Golden",
+			"target_vm": "Server1",
+			"target_dir": "/vm/RHEL-9-4/Server1",
+	  		"disk_type": 3
+		},
+		{
+			"vm_name": "client1",
+			"source_vm": "Golden",
+			"source_dir": "/vm/RHEL-9-4/Golden",
+			"target_vm": "Client1",
+			"target_dir": "/vm/RHEL-9-4/Client1",
+  			"disk_type": 3
+		},
+		{
+			"vm_name": "server2",
+			"source_vm": "Golden",
+			"source_dir": "/vm/RHEL-9-4/Golden",
+			"target_vm": "Server2",
+			"target_dir": "/vm/RHEL-9-4/Server2",
+  			"disk_type": 3
+		},
+		{
+			"vm_name": "client2",
+			"source_vm": "Golden",
+			"source_dir": "/vm/RHEL-9-4/Golden",
+			"target_vm": "Client2",
+			"target_dir": "/vm/RHEL-9-4/Client2",
+  			"disk_type": 3
+		}
+	]
+}
