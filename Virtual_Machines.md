@@ -26,9 +26,56 @@
 ## Virtual Machine Network Interfaces
 
 |Virtual Machine | ens160 IPv4 | ens160 MAC | VM LAN Setting ens160 | eth1 | eth1 MAC | VM LAN Setting eth1 |
-|------------|------------  |------------|------------|------------|------------|------------|
-| Golden | 172.16.165.135/24 | 00:0C:29:5F:C9:05 | vmnet8 / NAT  | N/A | N/A | N/A |
-| Server1 | 172.16.165.10/24 |   |  |  |  |  |
-| Client1 | 172.16.165.11/24 |  |  |  |  |  |
-| Server2 | 172.16.165.20/24 |  |  |  |  |  |
-| Client2 | 172.16.165.21/24 |  |  |  |  |  |
+|------------|------------  |------------|:------------:|------------|------------|:------------:|
+| Golden | 172.16.165.135/24 | 00:0C:29:5F:C9:05 | vmnet8 / NAT | N/A | N/A | N/A |
+| Client1 | 172.16.165.11/24 | 00:0c:29:9c:e3:67 | LAN Segment 1 | N/A | N/A | N/A |
+| Client2 | 172.16.165.21/24 | 00:0c:29:d6:ed:97 | LAN Segment 2 | N/A | N/A | N/A |
+| Server1 | 172.16.165.10/24 | 00:0c:29:5b:89:74 | vmnet8 / NAT |  |  | LAN Segment 1 |
+| Server2 | 172.16.165.20/24 | 00:0c:29:6e:05:c1 | vmnet8 / NAT |  |  | LAN Segment 2 |
+
+
+<br><br>
+# Manual Configuration Steps
+
+## Server1
+
+```bash
+hostnamectl set-hostname server1.example.com
+nmcli con mod ens160 \
+   ipv4.address 172.16.165.10/24 \
+   ipv4.gateway 172.16.165.2 \
+   ipv4.dns 172.16.165.2 \
+   ipv4.method manual 
+nmcli con reload
+nmcli con down "ens160"
+nmcli con up "ens160"
+
+nmcli con add con-name ens224 \
+   type ethernet \
+   ifname ens224 \ 
+   ipv4.address 192.168.10.10/24 \
+   ipv4.gateway 192.168.10.1 \
+   ipv4.method manual
+```
+
+## Server2
+```bash
+hostnamectl set-hostname server2.example.com
+nmcli con mod ens160 \
+   ipv4.address 172.16.165.20/24 \
+   ipv4.gateway 172.16.165.2 \
+   ipv4.dns 172.16.165.2 \
+   ipv4.method manual 
+nmcli con reload
+nmcli con down "ens160"
+nmcli con up "ens160"
+
+nmcli con add con-name "ens224" \
+   type ethernet \
+   ifname ens224 \ 
+   ipv4.address '192.168.20.10/24' \
+   ipv4.gateway 192.168.20.1 \
+   ipv4.method manual
+```
+
+   
