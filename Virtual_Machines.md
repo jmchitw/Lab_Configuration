@@ -25,7 +25,7 @@
 
 ## Virtual Machine Network Interfaces
 
-|Virtual Machine | ens160 IPv4 | ens160 MAC | VM LAN Setting ens160 | eth1 | eth1 MAC | VM LAN Setting eth1 |
+|Virtual Machine | ens160 IPv4 | ens160 MAC | VM LAN Setting ens160 | ens224 IPv4 | ens224 MAC | VM LAN Setting ens224 |
 |------------|------------  |------------|:------------:|------------|------------|:------------:|
 | Golden | 172.16.165.135/24 | 00:0C:29:5F:C9:05 | vmnet8 / NAT | N/A | N/A | N/A |
 | Client1 | 172.16.165.11/24 | 00:0c:29:9c:e3:67 | LAN Segment 1 | N/A | N/A | N/A |
@@ -35,9 +35,10 @@
 
 
 <br><br>
-# Manual Configuration Steps
 
-## Server1
+## Lab VM Manual Network Configuration Steps
+
+### Server1
 
 ```bash
 hostnamectl set-hostname server1.example.com
@@ -58,7 +59,7 @@ nmcli con add con-name ens224 \
    ipv4.method manual
 ```
 
-## Server2
+### Server2
 ```bash
 hostnamectl set-hostname server2.example.com
 nmcli con mod ens160 \
