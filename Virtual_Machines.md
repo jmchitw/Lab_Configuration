@@ -31,7 +31,7 @@
 | Utility | 172.16.165.5/24 | 00:0c:29:9F:0f:ce | vmnet8 / NAT | N/A | N/A | N/A |
 | Server1 | 172.16.165.10/24 | 00:0c:29:5b:89:74 | vmnet8 / NAT | 192.168.10.10 | 00:0c:29:5b:89:7e | LAN Segment 1 |
 | Client1 | 192.168.10.20/24 | 00:0c:29:9c:e3:67 | LAN Segment 1 | N/A | N/A | N/A |
-| Server2 | 172.16.165.20/24 | 00:0c:29:6e:05:c1 | vmnet8 / NAT | 192.168.20.10 | 00:0c:29:6e:05:cb | LAN Segment 2 |
+| Server2 | 172.16.165.10/24 | 00:0c:29:6e:05:c1 | vmnet8 / NAT | 192.168.20.10 | 00:0c:29:6e:05:cb | LAN Segment 2 |
 | Client2 | 192.168.20.20/24 | 00:0c:29:d6:ed:97 | LAN Segment 2 | N/A | N/A | N/A |
 
 <br>
@@ -57,7 +57,7 @@ nmcli con up ens160
 ```bash
 hostnamectl set-hostname client1.example.com
 nmcli con mod ens160 \
-   ipv4.address 192.168.10.10/24 \
+   ipv4.address 192.168.10.20/24 \
    ipv4.gateway 192.168.10.1 \
    ipv4.dns 192.168.10.1 \
    ipv4.method manual
@@ -71,7 +71,7 @@ nmcli con up ens160
 ```bash
 hostnamectl set-hostname client1.example.com
 nmcli con mod ens160 \
-   ipv4.address 192.168.20.10/24 \
+   ipv4.address 192.168.20.20/24 \
    ipv4.gateway 192.168.20.1 \
    ipv4.dns 192.168.20.1 \
    ipv4.method manual
